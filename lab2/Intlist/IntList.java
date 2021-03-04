@@ -98,21 +98,9 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        return dcatenate(A.copy(), B.copy());
-    }
-
-    /** returns a copy of the IntList */
-    public IntList copy() {
-        IntList dummy, curr, currL;
-        dummy = new IntList();
-        curr = dummy;
-        currL = this;
-        while (currL != null) {
-            curr.rest = new IntList(currL.first, null);
-            curr = curr.rest;
-            currL = currL.rest;
-        }
-        return dummy.rest;
+        if (A == null) return B;
+        if (B == null) return A;
+        return new IntList(A.first, catenate(A.rest, B));
     }
 
 
