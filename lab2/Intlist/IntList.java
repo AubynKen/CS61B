@@ -81,6 +81,10 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
+        if (A == null) {
+            A = B;
+            return A;
+        }
         IntList curr = A;
         while (curr.rest != null) {
             curr = curr.rest;
@@ -99,11 +103,10 @@ public class IntList {
 
     /** returns a copy of the IntList */
     public IntList copy() {
-        IntList L = this;
         IntList dummy, curr, currL;
         dummy = new IntList();
         curr = dummy;
-        currL = L;
+        currL = this;
         while (currL != null) {
             curr.rest = new IntList(currL.first, null);
             curr = curr.rest;
