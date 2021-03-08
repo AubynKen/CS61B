@@ -5,7 +5,9 @@ public class ArrayDeque<T> {
     private int lastPos;
     private final int FACTOR = 2; // The resizing factor
 
-    /** creates empty array */
+    /**
+     * creates empty array
+     */
     public ArrayDeque() {
         arr = (T[]) new Object[8];
         size = 0;
@@ -13,8 +15,10 @@ public class ArrayDeque<T> {
         lastPos = 2;
     }
 
-    /** checks if the array is full, and if that is the case, resize the array */
-    public void checkExpand() {
+    /**
+     * checks if the array is full, and if that is the case, resize the array
+     */
+    private void checkExpand() {
         if (size < arr.length) return;
         T[] newArr = (T[]) new Object[arr.length * FACTOR];
         if (lastPos > firstPos) {
@@ -27,10 +31,12 @@ public class ArrayDeque<T> {
         arr = newArr;
     }
 
-    /** checks if the deque.size < arr.length/4, and if yes, shrink the array */
-    public void checkShrink() {
-        if (size > arr.length/4) return;
-        T[] newArr = (T[]) new Object[arr.length/2];
+    /**
+     * checks if the deque.size < arr.length/4, and if yes, shrink the array
+     */
+    private void checkShrink() {
+        if (size > arr.length / 4) return;
+        T[] newArr = (T[]) new Object[arr.length / 2];
         if (lastPos > firstPos) {
             System.arraycopy(arr, firstPos, newArr, 0, size);
             firstPos = 0;
@@ -64,7 +70,7 @@ public class ArrayDeque<T> {
         firstPos--;
         if (firstPos < 0) firstPos += arr.length;
         arr[firstPos] = item;
-        size ++;
+        size++;
     }
 
     public T get(int pos) {
@@ -85,7 +91,7 @@ public class ArrayDeque<T> {
     public T removeFirst() {
         T res = arr[firstPos];
         arr[firstPos] = null;
-        firstPos ++;
+        firstPos++;
         if (firstPos >= arr.length) {
             firstPos -= arr.length;
         }
@@ -105,7 +111,6 @@ public class ArrayDeque<T> {
         checkShrink();
         return res;
     }
-
 
 
 }
