@@ -106,6 +106,9 @@ public class ArrayDeque<T> {
      * Called when the usage ratio is smaller than 1/SHRINK_TEST_RATIO after item removal.
      */
     private void shrink() {
+        if (capacity <= 8) {
+            return;
+        }
         int newCapacity = capacity / FACTOR;
         T[] newItems = (T[]) new Object[newCapacity];
         for (int i = frontPos, j = 0; i != indexPlusOne(backPos); i = indexPlusOne(i), j++) {
