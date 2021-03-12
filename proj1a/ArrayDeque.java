@@ -5,8 +5,8 @@
 public class ArrayDeque<T> {
     private static final int FACTOR = 2; // Expansion factor.
     private static final int INITIAL_CAPACITY = 8; // Initial length of @code items.
-    private static final int SHRINK_TEST_RATIO = 4; /* The minimum usage ratio of the items array should be
-    greater than 1/SHRINK_TEST_RATIO */
+    private static final int SHRINK_TEST_RATIO = 4; /* The minimum usage ratio of the items array
+     should be more than 1/SHRINK_TEST_RATIO greater than 1/SHRINK_TEST_RATIO */
     private T[] items;
     private int frontPos; // Index of the deque's first item.
     private int backPos; // Index of the last item.
@@ -96,7 +96,6 @@ public class ArrayDeque<T> {
         if (size == capacity) {
             expand();
         }
-        ;
         backPos = indexPlusOne(backPos);
         items[backPos] = item;
         size++;
@@ -107,9 +106,9 @@ public class ArrayDeque<T> {
      * Called when the usage ratio is smaller than 1/SHRINK_TEST_RATIO after item removal.
      */
     private void shrink() {
-        int newCapacity = capacity/FACTOR;
+        int newCapacity = capacity / FACTOR;
         T[] newItems = (T[]) new Object[newCapacity];
-        for(int i = frontPos, j = 0; i != indexPlusOne(backPos); i = indexPlusOne(i), j++) {
+        for (int i = frontPos, j = 0; i != indexPlusOne(backPos); i = indexPlusOne(i), j++) {
             newItems[j] = items[i];
         }
         items = newItems;
@@ -152,7 +151,7 @@ public class ArrayDeque<T> {
         items[backPos] = null;
         backPos = indexMinusOne(backPos);
         size--;
-        if (size * SHRINK_TEST_RATIO <= capacity && capacity >= 8) {
+        if (size * SHRINK_TEST_RATIO <= capacity && capacity > 8) {
             shrink();
         }
         return res;
@@ -178,8 +177,8 @@ public class ArrayDeque<T> {
      * Returns the element corresponding to @code index.
      * eg. The first item corresponds to index 0.
      */
-    public T get (int index) {
-        if (this.isEmpty() || index <0 || index >= size) {
+    public T get(int index) {
+        if (this.isEmpty() || index < 0 || index >= size) {
             return null;
         }
         int indexInItems = index + frontPos;
@@ -187,8 +186,14 @@ public class ArrayDeque<T> {
         return items[indexInItems];
     }
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
 //        var testDeque = new ArrayDeque<Integer>();
+//        testDeque.addFirst(0);
+//        testDeque.removeLast();
+//        testDeque.addFirst(0);
+//        testDeque.removeLast();
+//
+
 //        for (int i = 0; i < testDeque.capacity; i++) {
 //           System.out.println("indexMinusOne(" + i + ")" + " -> " + testDeque.indexMinusOne(i));
 //            System.out.println("indexPlusOne(" + i + ")" + " -> " + testDeque.indexPlusOne(i));
@@ -203,5 +208,6 @@ public class ArrayDeque<T> {
 //            System.out.print(testDeque.get(i));
 //            System.out.print(" ");
 //        }
-    }
+
+//    }
 }

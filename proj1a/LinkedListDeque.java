@@ -1,5 +1,6 @@
 public class LinkedListDeque<T> {
-    /** A nested class that serves as a naked implementation of a DLList
+    /**
+     * A nested class that serves as a naked implementation of a DLList
      * the implementation of a T deque uses a sentinel node
      */
     private class Node {
@@ -13,7 +14,6 @@ public class LinkedListDeque<T> {
             this.next = next;
         }
 
-        /** Helper method of LinkedListDeque.get() method. Uses recursion. */
         T getHelper(int i) {
             if (i == 0) {
                 return this.value;
@@ -26,7 +26,9 @@ public class LinkedListDeque<T> {
     private Node sentinel;
     private int size;
 
-    /** Instantiates an empty deque */
+    /**
+     * Instantiates an empty deque
+     */
     public LinkedListDeque() {
         this.sentinel = new Node(null, null, null);
         sentinel.next = sentinel;
@@ -34,17 +36,23 @@ public class LinkedListDeque<T> {
         this.size = 0;
     }
 
-    /** returns the size of the deque */
+    /**
+     * returns the size of the deque
+     */
     public int size() {
         return this.size;
     }
 
-    /** Returns true if and only if the deque contains at least one item */
+    /**
+     * Returns true if and only if the deque contains at least one item
+     */
     public boolean isEmpty() {
         return size == 0;
     }
 
-    /** Add @code item to the front of the DLList */
+    /**
+     * Add @code item to the front of the DLList
+     */
     public void addFirst(T item) {
         sentinel.next = new Node(item, sentinel, sentinel.next);
         sentinel.next.next.previous = sentinel.next;
@@ -79,7 +87,9 @@ public class LinkedListDeque<T> {
         return returnValue;
     }
 
-    /** Prints the elements of the deque, separated by a space */
+    /**
+     * Prints the elements of the deque, separated by a space
+     */
     public void printDeque() {
         if (size == 0) {
             System.out.println();
@@ -96,7 +106,9 @@ public class LinkedListDeque<T> {
         }
     }
 
-    /** Returns the @code index-th item of the deque. If no such item exists, return null */
+    /**
+     * Returns the @code index-th item of the deque. If no such item exists, return null
+     */
     public T getRecursive(int index) {
         if (index >= this.size || index < 0) {
             return null;
@@ -104,7 +116,9 @@ public class LinkedListDeque<T> {
         return sentinel.next.getHelper(index);
     }
 
-    /** Returns the index-th item of the deque without using recursion */
+    /**
+     * Returns the index-th item of the deque without using recursion
+     */
     public T get(int index) {
         if (index >= size || index < 0) {
             return null;
