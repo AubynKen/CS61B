@@ -31,11 +31,22 @@ public class TestPlip {
     }
 
     @Test
-    public void testReplicate() {
-        // TODO
+    public void testName() {
+        Plip p = new Plip(2);
+        String expected = "plip";
+        assertEquals(expected, p.name());
     }
 
-    //@Test
+    @Test
+    public void testReplicate() {
+        double rd = Math.random();
+        Plip p = new Plip(2 * rd);
+        Plip child = p.replicate();
+        double epsilon = 0.01;
+        assertEquals(rd, child.energy(),0.01);
+    }
+
+    @Test
     public void testChoose() {
 
         // No empty adjacent spaces; stay.
