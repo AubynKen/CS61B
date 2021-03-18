@@ -45,7 +45,7 @@ public class UnionFind {
 
     public boolean isRoot(int v) {
         validate(v);
-        return parent(v) < 0;
+        return parent[v] < 0;
     }
 
     /* Returns true if nodes v1 and v2 are connected. */
